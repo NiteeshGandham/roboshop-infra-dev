@@ -1,0 +1,52 @@
+resource "aws_instance" "bastion" {
+  ami           = local.ami_id
+  instance_type = "t3.micro"
+  subnet_id = local.public_subnet_id
+  vpc_security_group_ids = [local.bastion_sg_id]
+  iam_instance_profile = aws_iam_instance_profile.bastion.name
+  tags =merge(
+     {
+        Name = "${var.project}-${var.project}-bastion"
+     },
+     local.tags
+  )
+}
+
+
+
+resource "aws_iam_role" "bastion_role" {
+  name = "RoboshopDevRole"
+
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression result to valid JSON syntax.
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      },
+    ]
+  })
+
+  tags = merge(
+     {
+        Name = "${var.project}-${var.project}-bastion"
+     },
+     local.tags
+  )
+}
+
+resource "aws_iam_role_policy_attachment" "bastion" {
+  role       = aws_iam_role.bastion_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+}
+
+resource "aws_iam_instance_profile" "bastion" {
+  name = "${var.project}-${var.project}-bastion"
+  role = aws_iam_role.bastion_role.name
+}
