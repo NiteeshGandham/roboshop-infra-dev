@@ -5,10 +5,11 @@ resource "aws_instance" "mongodb" {
   vpc_security_group_ids = [local.mongodb_sg_id]
 
   tags =merge(
+    local.tags,
      {
         Name = "${var.project}-${var.project}-mongodb"
-     },
-     local.tags
+     }
+     
   )
 }
 
