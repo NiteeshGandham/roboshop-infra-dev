@@ -5,10 +5,10 @@ resource "aws_instance" "bastion" {
   vpc_security_group_ids = [local.bastion_sg_id]
   iam_instance_profile = aws_iam_instance_profile.bastion.name
   tags =merge(
+     local.tags,
      {
         Name = "${var.project}-${var.environment}-bastion"
-     },
-     local.tags
+     }
   )
 }
 
@@ -34,10 +34,10 @@ resource "aws_iam_role" "bastion_role" {
   })
 
   tags = merge(
+     local.tags,
      {
-        Name = "${var.project}-${var.project}-bastion"
-     },
-     local.tags
+        Name = "${var.project}-${var.environment}-bastion"
+     }
   )
 }
 
