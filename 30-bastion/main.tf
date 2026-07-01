@@ -6,7 +6,7 @@ resource "aws_instance" "bastion" {
   iam_instance_profile = aws_iam_instance_profile.bastion.name
   tags =merge(
      {
-        Name = "${var.project}-${var.project}-bastion"
+        Name = "${var.project}-${var.environment}-bastion"
      },
      local.tags
   )
