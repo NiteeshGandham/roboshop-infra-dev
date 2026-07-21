@@ -7,7 +7,7 @@ resource "aws_instance" "mongodb" {
   tags =merge(
     local.tags,
      {
-        Name = "${var.project}-${var.project}-mongodb"
+        Name = "${var.project}-${var.environment}-mongodb"
      }
      
   )
