@@ -18,3 +18,21 @@ mongodb:
     port: 27017
     src: user
     dest: mongodb
+
+Redis:
+  - name: redis_cart  #cart is dependent on redis
+    port: 6379
+    src: cart
+    dest: Redis
+
+Mysql:
+  - name: Mysql_shipping  #shipping is dependent on mysql
+    port: 3306
+    src: shipping
+    dest: mysql
+
+rabbitmq:
+  - name: rabbitmq_payment  #payment is dependent on rabbitmq
+    port: 5672
+    src: payment
+    dest: rabbitmq
