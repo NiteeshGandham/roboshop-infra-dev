@@ -87,7 +87,7 @@ resource "aws_instance" "mysql" {
   tags =merge(
     local.tags,
      {
-        Name = "${var.project}-${var.environment}-redis"
+        Name = "${var.project}-${var.environment}-mysql"
      }
      
   )
