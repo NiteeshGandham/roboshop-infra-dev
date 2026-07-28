@@ -77,7 +77,7 @@ resource "terraform_data" "bootstrap_redis" {
 
 
 
-#Mysql
+#Mysqll
 resource "aws_instance" "mysql" {
   ami           = local.ami_id
   instance_type = "t3.micro"
