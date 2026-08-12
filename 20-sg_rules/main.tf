@@ -68,7 +68,7 @@
     security_group_id = local.rabbitmq_sg_id
   }
 
-    resource "aws_security_group_rule" "backend_alb_bastion" {
+  resource "aws_security_group_rule" "backend_alb_bastion" {
     type              = "ingress"
     from_port         = 80
     to_port           = 80
@@ -76,4 +76,24 @@
     #where traffic coming from
     source_security_group_id  = local.Bastion_sg_id
     security_group_id = local.backend_alb_sg_id
+  }
+
+  resource "aws_security_group_rule" "catalogue_bastion" {
+    type              = "ingress"
+    from_port         = 80
+    to_port           = 80
+    protocol          = "tcp"
+    #where traffic coming from
+    source_security_group_id  = local.Bastion_sg_id
+    security_group_id = local.catalogue_sg_id
+  }
+
+    resource "aws_security_group_rule" "backend-albcatalogue" {
+    type              = "ingress"
+    from_port         = 8080
+    to_port           = 8080
+    protocol          = "tcp"
+    #where traffic coming from
+    source_security_group_id  = local.backend_alb_sg_id
+    security_group_id = local.catalogue_sg_id
   }
