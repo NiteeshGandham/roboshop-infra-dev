@@ -38,7 +38,7 @@ resource "aws_lb" "backend-alb" {
 
 
 
-resource "aws_route53_record" "" {
+resource "aws_route53_record" "lbackend-alb" {
   zone_id = var.zone_id
   name    = "*.backend-alb-${var.environment}.${var.domain_name}.com"
   type    = "A"
