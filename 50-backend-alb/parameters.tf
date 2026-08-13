@@ -1,5 +1,5 @@
-resource "aws_ssm_parameter" "mongodb_sg_id" {
+resource "aws_ssm_parameter" "backend_alb_listner_arn" {
   name  = "/${var.project}/${var.environment}/backend_alb_listner_arn"
   type  = "String"
-  value = aws_lb_listener.http.arn
+  value = aws_lb_listener.backend-alb.arn
 }
