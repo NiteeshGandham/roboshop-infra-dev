@@ -44,5 +44,5 @@ resource "aws_instance_state" "catalogue" {
 resource "aws_ami_from_instance" "catalogue" {
   name = "${var.project}-${var.environment}-catalogue"
   source_instance_id = aws_instance.catalogue.id
-  depends_on = aws_instance_state.catalogue
+  depends_on = [aws_instance_state.catalogue]
 }
