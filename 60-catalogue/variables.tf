@@ -16,3 +16,7 @@ variable "zone_id" {
 variable "domain_name" {
     default = "ngandham.online"
 }
+
+variable "app_version" {
+    default = true
+}
