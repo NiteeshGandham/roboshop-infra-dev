@@ -177,7 +177,7 @@ resource "aws_lb_listener_rule" "catalouge" {
 
   action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.catalouge.arn
+    target_group_arn = aws_lb_target_group.catalogue.arn
   }
 
   condition {
@@ -196,7 +196,7 @@ resource "terraform_data" "catalouge-delete" {
 
     # it execute in bastion
     provisioner "local-exec" {
-      command = "aws ec2 terminate-instances ${aws_instance.catalouge.id}"
+      command = "aws ec2 terminate-instances ${aws_instance.catalogue.id}"
   
     }
   }
