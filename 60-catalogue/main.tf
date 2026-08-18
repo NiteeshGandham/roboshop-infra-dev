@@ -42,7 +42,7 @@
   }
 
 resource "aws_ami_from_instance" "catalogue" {
-  name = "${var.project}-${var.environment}-catalogue-${aws_instance.catalouge.id}"
+  name = "${var.project}-${var.environment}-catalogue-${aws_instance.catalogue.id}"
   source_instance_id = aws_instance.catalogue.id
   depends_on = [
   terraform_data.bootstrap,
